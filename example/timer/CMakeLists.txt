@@ -5,6 +5,3 @@ project(timer)
 add_executable(timer main.cc)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/../../source/CMakeLists.txt)
-
-target_link_libraries(timer PRIVATE fmt::fmt fmt::fmt-header-only)
-
