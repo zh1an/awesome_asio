@@ -1,21 +1,24 @@
 #include <InvokeTimer.hpp>
+#include <logging.hpp>
 
 #include <iostream>
 
 int main(int argc, char *argv[]) {
-  std::cout << "Program starting..." << std::endl;
+  LOGGING_INIT;
+
+  LOGGING_DEBUG("Program starting...");
 
   asio::io_context io;
 
   auto timer_1 = awesome_asio::InvokeTimer::CreateTimer(io, std::chrono::seconds(2), []{
     static int count = 1;
-    std::cout << "timer_1 is executed " << count++ << " times" << std::endl;
+    LOGGING_INFO("timer_1 is executed {} times", count++);
     }, 10);
 
   timer_1->Start();
   io.run();
 
-  std::cout << "Program ending..." << std::endl;
+  LOGGING_DEBUG("Program ending...");
   return 0;
 }
 
