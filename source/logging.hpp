@@ -7,7 +7,7 @@
 
 #define LOGGING_INIT                                                           \
   {                                                                            \
-    spdlog::set_pattern("[%L%t %H:%M:%S.%e] %^%v%$ [%s:%#]");                  \
+    spdlog::set_pattern("[%L%t %H:%M:%S.%e] %^%v%$ [%s:%#]" /**/);              \
     spdlog::set_level(spdlog::level::trace);                                   \
   }
 #define LOGGING_TRACE SPDLOG_TRACE(__FUNCTION__);
@@ -16,6 +16,13 @@
 #define LOGGING_WARN SPDLOG_WARN
 #define LOGGING_ERROR SPDLOG_ERROR
 #define LOGGING_FATAL SPDLOG_CRITICAL
+
+#define LOGGING_IF_DEBUG(condition, ...) {if (condition) LOGGING_DEBUG(__VA_ARGS__);}
+#define LOGGING_IF_INFO(condition, ...) {if (condition) LOGGING_INFO(__VA_ARGS__);}
+#define LOGGING_IF_WARN(condition, ...) {if (condition) LOGGING_WARN(__VA_ARGS__);}
+#define LOGGING_IF_ERROR(condition, ...) {if (condition) LOGGING_ERROR(__VA_ARGS__);}
+#define LOGGING_IF_FATAL(condition, ...) {if (condition) LOGGING_FATAL(__VA_ARGS__);}
+
 
 #else
 
